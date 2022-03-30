@@ -1,4 +1,4 @@
-### overview
+### Overview
 read & write performance benchmark for redis timeseries between rueidis & redistimeseries-go
 
 ### Client libraries
