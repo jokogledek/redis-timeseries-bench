@@ -3,11 +3,12 @@ package config
 import (
 	"fmt"
 	"github.com/rs/zerolog/log"
+	"gopkg.in/yaml.v2"
 	"os"
 )
 
 func InitConfig() (cfg *Config, err error) {
-	log.Infof("config load [OK]")
+	log.Info().Msgf("config load [OK]")
 	cfg = &Config{}
 	err = cfg.readFile()
 	if err != nil {
@@ -22,24 +23,18 @@ func (cfg *Config) readFile() (err error) {
 		f *os.File
 	)
 
-	cfg.Environment = os.Getenv(enum.APP_ENV)
-	if cfg.Environment != "staging" && cfg.Environment != "production" {
-		cfg.Environment = "development"
-	}
-	log.Infof("[cfg.Environment ADALAH] %s", cfg.Environment)
-
 	path := []string{
-		"/config/api-config",
-		"files/config/api-config",
-		"./files/config/api-config",
-		"../files/config/api-config",
-		"../../files/config/api-config",
+		"/config",
+		"files/config",
+		"./files/config",
+		"../files/config",
+		"../../files/config",
 	}
 
 	for _, val := range path {
-		f, err = os.Open(fmt.Sprintf(`%s/%s/config.main.yml`, val, cfg.Environment))
+		f, err = os.Open(fmt.Sprintf(`%s/cfg.yml`, val))
 		if err == nil {
-			log.Infof("[config][init] load config file from %s", fmt.Sprintf(`%s/%s/config.main.yml`, val, cfg.Environment))
+			log.Info().Msgf("[config][init] load config file from %s", fmt.Sprintf(`%s/cfg.yml`, val))
 			decoder := yaml.NewDecoder(f)
 			err = decoder.Decode(cfg)
 			break
@@ -49,7 +44,7 @@ func (cfg *Config) readFile() (err error) {
 	if err != nil {
 		return
 	}
-	cfg.setLocalAddress()
-	log.Infof("[config][ReadConfig] Config load success, running on \"%s\".", cfg.Environment)
+
+	log.Info().Msg("[config][ReadConfig] Config load success")
 	return
 }
