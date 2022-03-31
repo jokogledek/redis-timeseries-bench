@@ -38,7 +38,6 @@ func NewBench(cfg *config.Config) *Bench {
 
 func (b *Bench) InitRedis() (err error) {
 	redisHost := fmt.Sprintf("%s:%d", b.cfg.Redis.Host, b.cfg.Redis.Port)
-	fmt.Println(redisHost)
 	b.RedisClient, err = rueidis.NewClient(rueidis.ClientOption{
 		BlockingPoolSize:  5000,
 		CacheSizeEachConn: 256 * (1 << 20),
