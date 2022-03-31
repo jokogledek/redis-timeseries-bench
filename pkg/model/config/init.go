@@ -2,12 +2,14 @@ package config
 
 import (
 	"fmt"
+	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"gopkg.in/yaml.v2"
 	"os"
 )
 
 func InitConfig() (cfg *Config, err error) {
+	zerolog.TimeFieldFormat = zerolog.TimeFormatUnix
 	log.Info().Msgf("config load [OK]")
 	cfg = &Config{}
 	err = cfg.readFile()

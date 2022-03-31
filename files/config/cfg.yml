@@ -6,3 +6,5 @@ database:
   pass: "telogoreng"
   dbname: "order_datasource"
   host: "0.0.0.0"
+files:
+  csv: "./files/bench_file/1997-2017.csv"

@@ -3,6 +3,11 @@ package config
 type Config struct {
 	Redis    RedisConfig    `yaml:"redis"`
 	Database DatabaseConfig `yaml:"database"`
+	Files    FileConfig     `yaml:"files"`
+}
+
+type FileConfig struct {
+	Csv string `yaml:"csv"`
 }
 
 type RedisConfig struct {
