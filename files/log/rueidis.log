@@ -1,0 +1,10 @@
+{"level":"info","time":1648746190,"message":"config load [OK]"}
+{"level":"info","time":1648746190,"message":"[config][init] load config file from /etc/redis_bench/config/cfg.yml"}
+{"level":"info","time":1648746190,"message":"[config][ReadConfig] Config load success"}
+{"level":"info","time":1648746190,"message":"data length : 681540"}
+{"level":"info","time":1648746190,"message":"load csv finished in 262.07028ms"}
+{"level":"info","time":1648746191,"message":"insert into redis finished in 416.758756ms"}
+{"level":"info","time":1648746191,"message":"Alloc : 258 MiB"}
+{"level":"info","time":1648746191,"message":"TotalAlloc : 553 MiB"}
+{"level":"info","time":1648746191,"message":"Sys : 353 MiB"}
+{"level":"info","time":1648746191,"message":"NumGC : 11"}

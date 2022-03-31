@@ -3,11 +3,6 @@ redis:
   port: 16379
   key: "bench:user01"
   buffer: 10
-  max_queue: 10000
-database:
-  username: "rozz"
-  pass: "telogoreng"
-  dbname: "order_datasource"
-  host: "0.0.0.0"
+  max_queue: 100000
 files:
   csv: "./files/bench_file/1997-2017.csv"
