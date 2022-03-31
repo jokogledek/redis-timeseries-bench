@@ -1,7 +1,7 @@
 package config
 
 type Config struct {
-	Redis    RedisConfig    `yaml:"bench"`
+	Redis    RedisConfig    `yaml:"redis"`
 	Database DatabaseConfig `yaml:"database"`
 	Files    FileConfig     `yaml:"files"`
 }
@@ -11,8 +11,11 @@ type FileConfig struct {
 }
 
 type RedisConfig struct {
-	Host string `yaml:"host"`
-	Port int    `yaml:"port"`
+	Host     string `yaml:"host"`
+	Port     int    `yaml:"port"`
+	Key      string `yaml:"key"`
+	Buffer   int    `yaml:"buffer"`
+	MaxQueue int    `yaml:"max_queue"`
 }
 
 type DatabaseConfig struct {

@@ -1,6 +1,9 @@
 redis:
   host: "192.168.1.21"
   port: 16379
+  key: "bench:user01"
+  buffer: 10
+  max_queue: 10000
 database:
   username: "rozz"
   pass: "telogoreng"

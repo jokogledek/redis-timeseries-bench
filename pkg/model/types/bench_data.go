@@ -7,6 +7,6 @@ type Stocks struct {
 	High   string
 	Low    string
 	Close  string
-	Volume int
+	Volume float64
 	//AAD,2/01/1997,0.74,0.76,0.74,0.75,10722
 }
