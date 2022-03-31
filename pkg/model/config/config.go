@@ -1,7 +1,7 @@
 package config
 
 type Config struct {
-	Redis    RedisConfig    `yaml:"redis"`
+	Redis    RedisConfig    `yaml:"bench"`
 	Database DatabaseConfig `yaml:"database"`
 	Files    FileConfig     `yaml:"files"`
 }
