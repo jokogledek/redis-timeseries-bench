@@ -27,6 +27,7 @@ func (cfg *Config) readFile() (err error) {
 
 	path := []string{
 		"/config",
+		"/etc/redis_bench/config",
 		"files/config",
 		"./files/config",
 		"../files/config",
