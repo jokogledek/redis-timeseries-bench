@@ -4,7 +4,7 @@ read & write performance benchmark for redis timeseries between rueidis & redist
 ### Quick start
 https://redis.io/docs/stack/timeseries/quickstart/
 ```shell
-docker run -p 0.0.0.0:16379:6379 -it --rm redislabs/redistimeseries
+docker run -p 0.0.0.0:16379:6379 -d --rm --name=rds_timeseries redislabs/redistimeseries
 ```
 
 ### Client libraries

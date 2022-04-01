@@ -1,0 +1,10 @@
+{"level":"info","time":1648782335,"message":"config load [OK]"}
+{"level":"info","time":1648782335,"message":"[config][init] load config file from files/config/cfg.yml"}
+{"level":"info","time":1648782335,"message":"[config][ReadConfig] Config load success"}
+{"level":"info","time":1648782336,"message":"data length : 681540"}
+{"level":"info","time":1648782336,"message":"load csv finished in 418.953508ms"}
+{"level":"info","time":1648782345,"message":"insert into redis finished in 8.992065064s"}
+{"level":"info","time":1648782345,"message":"Alloc : 19 MiB"}
+{"level":"info","time":1648782345,"message":"TotalAlloc : 689 MiB"}
+{"level":"info","time":1648782345,"message":"Sys : 357 MiB"}
+{"level":"info","time":1648782345,"message":"NumGC : 14"}

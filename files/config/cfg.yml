@@ -1,8 +1,13 @@
 redis:
-  host: "192.168.1.21"
+  host: "0.0.0.0"
   port: 16379
   key: "bench:user01"
   buffer: 10
   max_queue: 100000
+database:
+  username: "-"
+  pass: "-"
+  dbname: "order_datasource"
+  host: "0.0.0.0"
 files:
   csv: "./files/bench_file/1997-2017.csv"
