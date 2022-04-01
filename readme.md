@@ -8,10 +8,10 @@ docker run -p 0.0.0.0:16379:6379 -d --rm --name=rds_timeseries redislabs/redisti
 ```
 
 ### Client libraries
-| Project                                      | Language | License  | Author                             | Stars                                                 | Bulk Insert |
-|----------------------------------------------|----------|----------|------------------------------------|-------------------------------------------------------|-------------|
-| [redistimeseries-go][redistimeseries-go-url] | Go       | Apache-2 | [Redis][redistimeseries-go-author] | [![redistimeseries-go-stars]][redistimeseries-go-url] | 523.18 ms   |
-| [rueidis][rueidis-url]                       | Go       | Apache-2 | [Rueian][rueidis-author]           | [![rueidis-stars]][rueidis-url]                       | 416.76 ms   |
+| Project                                      | Language | License  | Author                             | Stars                                                 | Bulk Insert                 |
+|----------------------------------------------|----------|----------|------------------------------------|-------------------------------------------------------|-----------------------------|
+| [redistimeseries-go][redistimeseries-go-url] | Go       | Apache-2 | [Redis][redistimeseries-go-author] | [![redistimeseries-go-stars]][redistimeseries-go-url] | 523.18 ms (1,3mio row/sec)  |
+| [rueidis][rueidis-url]                       | Go       | Apache-2 | [Rueian][rueidis-author]           | [![rueidis-stars]][rueidis-url]                       | 416.76 ms (1,63mio row/sec) |
 
 [redistimeseries-go-url]: https://github.com/RedisTimeSeries/redistimeseries-go/
 [redistimeseries-go-author]: https://redis.com
