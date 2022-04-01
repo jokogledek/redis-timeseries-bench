@@ -25,3 +25,11 @@ docker run -p 0.0.0.0:16379:6379 -d --rm --name=rds_timeseries redislabs/redisti
 * 681.540 rows
 * 100.000 rows / chunk
 * test on 8 core / 16GB, ubuntu OS
+
+### Run Benchmark
+```shell
+git clone git@github.com:ujunglangit-id/redis-timeseries-bench.git && cd redis-timeseries-bench
+docker run -p 0.0.0.0:16379:6379 -d --rm --name=rds_timeseries redislabs/redistimeseries
+go mod vendor
+make bench
+```

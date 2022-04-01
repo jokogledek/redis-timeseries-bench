@@ -12,5 +12,5 @@ bench: build_goredis build_goredis
 	@echo "=================================="
 	@echo "benchmark with rueidis"
 	@echo "=================================="
-	@./cmd/goredis/bench_rueidis
+	@./cmd/rueidis/bench_rueidis
 	@echo "=================================="

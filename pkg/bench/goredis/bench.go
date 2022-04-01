@@ -48,15 +48,22 @@ func (b *Bench) InitRedis() (err error) {
 	b.RedisClient = redis.NewClientFromPool(pool, "timeseries")
 	//prepare timeseries key
 	b.Key = b.cfg.Redis.Key + ":goseries_01"
+	log.Info().Msgf("redis key : %s", b.Key)
 	_, exists := b.RedisClient.Info(b.Key)
-	if exists != nil {
-		opt := redis.DefaultCreateOptions
-		opt.Labels["volume"] = "0"
-		err = b.RedisClient.CreateKeyWithOptions(b.Key, opt)
+	if exists == nil {
+		err = b.RedisClient.DeleteSerie(b.Key)
 		if err != nil {
-			log.Fatal().Msgf("failed to create timeseries key %#v", err)
+			log.Fatal().Msgf("failed to delete timeseries key %#v", err)
 			return err
 		}
+	}
+
+	opt := redis.DefaultCreateOptions
+	opt.Labels["volume"] = "0"
+	err = b.RedisClient.CreateKeyWithOptions(b.Key, opt)
+	if err != nil {
+		log.Fatal().Msgf("failed to create timeseries key %#v", err)
+		return err
 	}
 	return
 }
@@ -102,12 +109,10 @@ func (b *Bench) InsertToRedis() {
 	)
 
 	counter := 0
-	//poolData := b.RedisClient.B().TsMadd().KeyTimestampValue()
 	datapoints := []redis.Sample{}
 
 	for k, v := range b.PayloadData {
 		counter++
-		//poolData.KeyTimestampValue(b.Key, time.Now().UnixNano(), v.Volume)
 		datapoints = append(datapoints, redis.Sample{
 			Key: b.Key,
 			DataPoint: redis.DataPoint{
@@ -124,14 +129,12 @@ func (b *Bench) InsertToRedis() {
 				defer wg.Done()
 				mtx.Lock()
 				_, err := b.RedisClient.MultiAdd(sample...)
-				//err := b.RedisClient.Do(context.Background(), buffPool.Build()).Error()
 				if err != nil {
 					log.Error().Msgf("error add timeseries %#v", err)
 				}
 				mtx.Unlock()
 			}(datapoints)
 			datapoints = []redis.Sample{}
-			//poolData = b.RedisClient.B().TsMadd().KeyTimestampValue()
 		}
 	}
 	wg.Wait()
