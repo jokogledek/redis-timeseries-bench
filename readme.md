@@ -24,4 +24,4 @@ docker run -p 0.0.0.0:16379:6379 -d --rm --name=rds_timeseries redislabs/redisti
 ### Test Data
 * 681.540 rows
 * 100.000 rows / chunk
-* test on 8 core / 16GB machine
+* test on 8 core / 16GB, ubuntu OS
