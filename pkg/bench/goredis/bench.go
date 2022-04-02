@@ -52,6 +52,7 @@ func (b *Bench) InitRedis() (err error) {
 	_, exists := b.RedisClient.Info(b.Key)
 	if exists == nil {
 		err = b.RedisClient.DeleteSerie(b.Key)
+		log.Info().Msgf("delete redis key  %s if exists", b.Key)
 		if err != nil {
 			log.Fatal().Msgf("failed to delete timeseries key %#v", err)
 			return err
