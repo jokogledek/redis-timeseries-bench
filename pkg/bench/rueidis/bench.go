@@ -104,6 +104,26 @@ func (b *Bench) LoadCsv() {
 	log.Info().Msgf("data length : %d", len(b.PayloadData))
 }
 
+func (b *Bench) RedisInsert() {
+	if err := b.RedisClient.Dedicated(func(client rueidis.DedicatedClient) error {
+		cmds := make(rueidis.Commands, 0, len(b.PayloadData)/2)
+		for i := 0; i < len(b.PayloadData); i += 2 {
+			cmd := b.RedisClient.B().TsMadd().KeyTimestampValue()
+			cmd = cmd.KeyTimestampValue(b.Key, time.Now().UnixNano(), b.PayloadData[i+0].Volume)
+			cmd = cmd.KeyTimestampValue(b.Key, time.Now().UnixNano(), b.PayloadData[i+1].Volume)
+			cmds = append(cmds, cmd.Build())
+		}
+		for _, resp := range client.DoMulti(context.Background(), cmds...) {
+			if err := resp.Error(); err != nil {
+				return err
+			}
+		}
+		return nil
+	}); err != nil {
+		log.Error().Msgf("error add timeseries %#v", err)
+	}
+}
+
 func (b *Bench) InsertToRedis() {
 	var (
 		wg  = sync.WaitGroup{}
