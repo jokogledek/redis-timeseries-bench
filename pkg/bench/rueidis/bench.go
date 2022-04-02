@@ -104,9 +104,9 @@ func (b *Bench) LoadCsv() {
 	log.Info().Msgf("data length : %d", len(b.PayloadData))
 }
 
-func (b *Bench) RedisInsert() {
+func (b *Bench) InsertWithDedicatedConn() {
 	if err := b.RedisClient.Dedicated(func(client rueidis.DedicatedClient) error {
-		cmds := make(rueidis.Commands, 0, len(b.PayloadData)/2)
+		cmds := make(rueidis.Commands, 0, len(b.PayloadData)/b.cfg.Redis.MaxQueue)
 		for i := 0; i < len(b.PayloadData); i += b.cfg.Redis.MaxQueue {
 			cmd := b.RedisClient.B().TsMadd().KeyTimestampValue()
 			for t := 0; t < b.cfg.Redis.MaxQueue; t++ {
@@ -114,7 +114,6 @@ func (b *Bench) RedisInsert() {
 					cmd = cmd.KeyTimestampValue(b.Key, time.Now().UnixNano(), b.PayloadData[i+t].Volume)
 				}
 			}
-			//cmd = cmd.KeyTimestampValue(b.Key, time.Now().UnixNano(), b.PayloadData[i+1].Volume)
 			cmds = append(cmds, cmd.Build())
 		}
 		for _, resp := range client.DoMulti(context.Background(), cmds...) {

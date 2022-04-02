@@ -25,7 +25,7 @@ func main() {
 	log.Info().Msgf("load csv finished in %s", time.Since(start))
 
 	start = time.Now()
-	bench.RedisInsert() //use dedicated connection
+	bench.InsertWithDedicatedConn() //use rueidis dedicated connection
 	log.Info().Msgf("insert into redis finished in %s", time.Since(start))
 
 	//start = time.Now()
