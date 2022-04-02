@@ -63,8 +63,8 @@ func (b *Bench) InitRedis() (err error) {
 			Labels().Labels("volume", "0").
 			Build()).Error()
 	if err != nil {
-		log.Fatal().Msgf("failed to create timeseries key %#v", err)
-		return
+		log.Error().Msgf("failed to create timeseries key %#v", err)
+		return nil
 	}
 
 	return
