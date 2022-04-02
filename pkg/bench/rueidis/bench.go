@@ -53,8 +53,8 @@ func (b *Bench) InitRedis() (err error) {
 	//delete key if exist
 	err = b.RedisClient.Do(context.Background(), b.RedisClient.B().Del().Key(b.Key).Build()).Error()
 	if err != nil {
-		log.Fatal().Msgf("failed to delete timeseries key %s, %#v", b.Key, err)
-		return
+		log.Info().Msgf("failed to delete timeseries key %s, %#v", b.Key, err)
+		err = nil
 	}
 
 	err = b.RedisClient.Do(context.Background(),
