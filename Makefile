@@ -5,7 +5,7 @@ build_rueidis:
 build_goredis:
 	@go build -o ./cmd/goredis/goredis ./cmd/goredis
 
-bench: build_goredis build_goredis
+bench: build_goredis build_rueidis
 	@echo "benchmark with redistimeseries-go"
 	@echo "=================================="
 	@./cmd/goredis/goredis
